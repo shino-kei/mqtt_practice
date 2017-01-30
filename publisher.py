@@ -14,10 +14,8 @@ client.connect(host, port=port, keepalive=60)
 
 # topicの発行
 topic = 'test'
-
-for i in range(3):
-    client.publish(topic, 'message'+str(i))
-    sleep(0.2)
+client.publish(topic, 'message')
+sleep(0.2)
 
 # ブローカーと切断する
 client.disconnect()
