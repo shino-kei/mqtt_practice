@@ -31,12 +31,20 @@ ROS（RobotOperatingSystem）においても，このPub/Sub型のメッセー�
 実際に試しながら慣れていきましょう．
 
 ### mosquittoとは
-mosquittoとは，通信規格であるMQTTを実装したオープンソースライブラリであり，
+[mosquitto](https://mosquitto.org/)とは，通信規格であるMQTTを実装したオープンソースライブラリであり，
 これを使うことを簡単にMQTTブローカーをネットワーク上に構築することができます．
 
-### PythonでMQTTクライアントを生成する
+インストールの際は，Ubuntu標準リポジトリのmosquittoが古いものしか無いようなので，リポジトリを追加します．
+
+    sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
+    sudo apt-get update
+    sudo apt-get install mosquitto mosquitto-clients
+
+### pythonでMQTTクライアントを作成する
 PythonでMQTTクライアント,つまりPublisherやSubscriberを実装したい場合，
-paho-mqttを使うといいでしょう．
+[paho-mqtt](https://eclipse.org/paho/)を使うといいでしょう．
+
+以後，想定する実行環境はUbuntu 14.04とします．
 
 Pythonで外部ライブラリを使いたい場合，pipと呼ばれるツールがよく用いられます．
 ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをインストールすることにします．
