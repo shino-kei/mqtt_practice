@@ -34,6 +34,24 @@ ROS（RobotOperatingSystem）においても，このPub/Sub型のメッセー�
 mosquittoとは，通信規格であるMQTTを実装したオープンソースライブラリであり，
 これを使うことを簡単にMQTTブローカーをネットワーク上に構築することができます．
 
+### PythonでMQTTクライアントを生成する
+PythonでMQTTクライアント,つまりPublisherやSubscriberを実装したい場合，
+paho-mqttを使うといいでしょう．
+
+Pythonで外部ライブラリを使いたい場合，pipと呼ばれるツールがよく用いられます．
+ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをインストールすることにします．
+
+    sudo pip3 install paho-mqtt
+
+なお，pip3が入ってない場合は，
+
+    sudo apt-get install python3-pip
+
+でインストールしておいてください．
+
+これで準備完了です．テキストエディタもしくは，vim等のエディタを開いて，プログラムを書いていきましょう．
+なお，説明の都合上サンプルのプログラムをここに書いていますが，最初のうちはできればコピペせず，
+実際にキーボードを叩きながら覚えることを推奨します．
 
 ### Subscriberを作成
 
