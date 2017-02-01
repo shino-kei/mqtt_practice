@@ -164,14 +164,19 @@ mosquittoとは，通信規格であるMQTTを実装したオープンソース�
 ```
 
 #### 練習問題:
-EV3超音波センサーのデータを周期10HzでPublishできるようにしましょう．
+EV3超音波センサーのデータを周期10HzでPublishせよ．
 
 
 ### PCとEV3をMQTTで通信させよう
 
 ## ROSについて理解しよう
+
 ### Pub/Sub型のメッセージング
+http://wiki.ros.org/ja/indigo/Installation/Ubuntu
+
 ### ROSのインストール
+http://wiki.ros.org/ja/indigo/Installation/Ubuntu
+
 ### 自分のパッケージを作成する
 
 ## 他の人が書いたパッケージと連携しよう
