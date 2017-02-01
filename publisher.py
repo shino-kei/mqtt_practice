@@ -5,7 +5,8 @@ from time import sleep
 import paho.mqtt.client as mqtt
 
 # MQTTブローカーのアドレスとポートを指定する
-host = '192.168.11.11'
+# host = '192.168.11.11'
+host = '127.0.0.1'
 port = 1883
 
 # インスタンスの生成
