@@ -38,7 +38,7 @@ ROS（RobotOperatingSystem）においても，このPub/Sub型のメッセー�
 
     sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
     sudo apt-get update
-    sudo apt-get install mosquitto mosquitto-clients
+    sudo apt-get install mosquitto 
 
 ### pythonでMQTTクライアントを作成する
 PythonでMQTTクライアント,つまりPublisherやSubscriberを実装したい場合，
@@ -166,27 +166,27 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
 
 ```python
 
-    #!/usr/bin/env python
-    # -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-    from time import sleep
-    import paho.mqtt.client as mqtt
+from time import sleep
+import paho.mqtt.client as mqtt
 
-    # MQTTブローカーのアドレスとポートを指定する
-    host = '192.168.11.11'
-    port = 1883
+# MQTTブローカーのアドレスとポートを指定する
+host = '192.168.11.11'
+port = 1883
 
-    # インスタンスの生成
-    client = mqtt.Client()
-    client.connect(host, port=port, keepalive=60)
+# インスタンスの生成
+client = mqtt.Client()
+client.connect(host, port=port, keepalive=60)
 
-    # topicの発行
-    topic = 'test'
-    client.publish(topic, 'message')
-    sleep(0.2)
+# topicの発行
+topic = 'test'
+client.publish(topic, 'message')
+sleep(0.2)
 
-    # ブローカーと切断する
-    client.disconnect()
+# ブローカーと切断する
+client.disconnect()
 ```
 
 #### 練習問題:
