@@ -32,8 +32,6 @@ def on_back(client, userdata, msg):
 
 
 
-
-
 if __name__ == '__main__':
 
     try : 
