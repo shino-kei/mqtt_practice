@@ -4,7 +4,7 @@
 
 * ifconfigコマンド
 * ssh(telnet)コマンド
-* sftp(sftp)コマンド
+* sftp(ftp)コマンド
 * vi,nanoコマンド
 
 ## Pub/Sub型のデータ通信方法について理解する（MQTT）
