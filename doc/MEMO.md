@@ -131,7 +131,7 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
 次の仕様を満たすロボットを作成せよ．
 
 要求1: 
-トピック'ev3/vel'を受け取り，機体の並進方向の移動スピードを変更できる．
+トピック'ev3/vel'を受け取り，機体の並進方向の移動スピード(vel)を変更できる．
 
 要求2:
 トピック'ev3/steer'を受け取り，機体の操舵角指令(steer)を受け取ることができる．
@@ -139,7 +139,7 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
 ただし，steerの有効範囲は-15 < steer < 15 とし，
 
     steer = 15 (steer > 15)
-    steer = ev3/steer が示す値
+    steer = ev3/steer が示す値(msg.payload)
     stter = -15 (steer < -15)
 
 要求3:
