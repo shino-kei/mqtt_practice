@@ -1,11 +1,12 @@
 # ROS特訓 
 
-## IPアドレスとネットワークについて理解しよう
+## Linuxの基本CLIコマンドに慣れる
 
-* ifconfigコマンド
-* ssh(telnet)コマンド
-* sftp(ftp)コマンド
-* vi,nanoコマンド
+* IPアドレスの確認：ifconfig
+* リモートログイン：ssh(telnet)
+* リモートPCへのファイル送受信：sftp(ftp)
+* テキストの編集:vi,nano,vim,emacs
+* ファイルのバージョン管理：git 
 
 ## Pub/Sub型のデータ通信方法について理解する（MQTT）
 ### MQTTとは
@@ -44,9 +45,10 @@ ROS（RobotOperatingSystem）においても，このPub/Sub型のメッセー�
 PythonでMQTTクライアント,つまりPublisherやSubscriberを実装したい場合，
 [paho-mqtt](https://eclipse.org/paho/)を使うといいでしょう．
 
-以後，想定する実行環境はUbuntu 14.04とします．
+以下，想定する実行環境はUbuntu 14.04とします．
 
-Pythonで外部ライブラリを使いたい場合，pipと呼ばれるツールがよく用いられます．
+Pythonで外部ライブラリをインストールする場合，pipと呼ばれるツールがよく用いられます．
+pipコマンドでは，Python向けのライブラリをコマンドのみでインストール可能になるので，いちいち公式サイトからダウンロードしてインストールする手間が省けます．
 ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをインストールすることにします．
 
     sudo pip3 install paho-mqtt
@@ -62,6 +64,19 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
 実際にキーボードを叩きながら覚えることを推奨します．
 
 ### Subscriberを作成
+まずは，外部からトピックをSubscribeすることで，外部からEV3を遠隔操作するプログラムを作成していきましょう．
+on_backとon_forwardに対応する処理を加えて，後進と前進ができるようにしましょう．
+動作確認には，
+
+    sudo apt-get install mosquitto-clients
+でmosquitto-clientsをPC側にインストールして，
+
+    mosquitto_pub -d -t ev3/back -m "20"
+
+とすれば，topic名:ev3/back，メッセージ:"20"でpublishしてくれます．
+もしくは，スマートフォンのアプリにもMQTTクライアントが存在するので，
+使いやすそうなものを探してみるのもいいでしょう．
+
 
 ```python
 
@@ -72,7 +87,7 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
     import paho.mqtt.client as mqtt
 
     # ブローカーの設定
-    host = '127.0.0.1'
+    host = '127.0.0.1' # ブローカーのIPアドレスに合わせて適宜変更する
     port = 1883
 
     FORWARD_TOPIC = 'ev3/forward'
@@ -210,3 +225,5 @@ http://wiki.ros.org/ja/indigo/Installation/Ubuntu
 
 ## OpenCVを使って画像処理をしよう
 * OpenCVを使う
+
+https://github.com/ardyadipta/ROS/tree/master/camera_image
