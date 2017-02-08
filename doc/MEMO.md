@@ -2,7 +2,7 @@
 
 ## Linuxの基本CLIコマンドに慣れる
 
-* IPアドレスの確認：ifconfig
+* IPアドレスの確認：ifconfiig(todo:仮想環境での扱いを確認する)
 * リモートログイン：ssh(telnet)
 * リモートPCへのファイル送受信：sftp(ftp)
 * テキストの編集:vi,nano,vim,emacs
@@ -210,6 +210,7 @@ EV3超音波センサーのデータを周期10HzでPublishせよ．
 
 ### PCとEV3をMQTTで通信させよう
 
+
 ## ROSについて理解しよう
 
 ### Pub/Sub型のメッセージング
@@ -227,3 +228,4 @@ http://wiki.ros.org/ja/indigo/Installation/Ubuntu
 * OpenCVを使う
 
 https://github.com/ardyadipta/ROS/tree/master/camera_image
+
