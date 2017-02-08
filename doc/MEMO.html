@@ -485,13 +485,24 @@ pre {
 </head>
 <body>
 <h1>ROS特訓</h1>
-<h2>IPアドレスとネットワークについて理解しよう</h2>
+<h2>Linuxの基本CLIコマンドに慣れる</h2>
 <ul>
-<li>ifconfigコマンド</li>
-<li>ssh(telnet)コマンド</li>
-<li>sftp(ftp)コマンド</li>
-<li>vi,nanoコマンド</li>
+<li>IPアドレスの確認：ifconfiig(todo:仮想環境での扱いを確認する)</li>
+<li>リモートログイン：ssh(telnet)</li>
+<li>リモートPCへのファイル送受信：sftp(ftp)</li>
+<li>テキストの編集:vi,nano,vim,emacs</li>
+<li>ファイルのバージョン管理：git</li>
 </ul>
+<pre class="hljs"><code>＜virtualboxでのIPアドレス扱いについて＞
+
+virtualBoxで作成したゲストOSは，ホストOSに直接NATされている設定になっているため，
+無線LANルータ等経由でゲストOSを見つけることができません．
+
+対策としては，virtualboxのゲストOSの設定で，
+ネットワークの割り当てをNATからブリッジアダプターに設定してください．
+
+参考リンク: http://www.ev3dev.org/docs/getting-started/
+</code></pre>
 <h2>Pub/Sub型のデータ通信方法について理解する（MQTT）</h2>
 <h3>MQTTとは</h3>
 <p>MQTTでのデータ通信はPublish/Subscriber型のメッセージングによって行われます．
@@ -522,8 +533,9 @@ sudo apt-get install mosquitto
 <h3>pythonでMQTTクライアントを作成する</h3>
 <p>PythonでMQTTクライアント,つまりPublisherやSubscriberを実装したい場合，
 <a href="https://eclipse.org/paho/">paho-mqtt</a>を使うといいでしょう．</p>
-<p>以後，想定する実行環境はUbuntu 14.04とします．</p>
-<p>Pythonで外部ライブラリを使いたい場合，pipと呼ばれるツールがよく用いられます．
+<p>以下，想定する実行環境はUbuntu 14.04とします．</p>
+<p>Pythonで外部ライブラリをインストールする場合，pipと呼ばれるツールがよく用いられます．
+pipコマンドでは，Python向けのライブラリをコマンドのみでインストール可能になるので，いちいち公式サイトからダウンロードしてインストールする手間が省けます．
 ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをインストールすることにします．</p>
 <pre><code>sudo pip3 install paho-mqtt
 </code></pre>
@@ -535,6 +547,17 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
 なお，説明の都合上サンプルのプログラムをここに書いていますが，最初のうちはできればコピペせず，
 実際にキーボードを叩きながら覚えることを推奨します．</p>
 <h3>Subscriberを作成</h3>
+<p>まずは，外部からトピックをSubscribeすることで，外部からEV3を遠隔操作するプログラムを作成していきましょう．
+on_backとon_forwardに対応する処理を加えて，後進と前進ができるようにしましょう．
+動作確認には，</p>
+<pre><code>sudo apt-get install mosquitto-clients
+</code></pre>
+<p>でmosquitto-clientsをPC側にインストールして，</p>
+<pre><code>mosquitto_pub -d -t ev3/back -m &quot;20&quot;
+</code></pre>
+<p>とすれば，topic名:ev3/back，メッセージ:&quot;20&quot;でpublishしてくれます．
+もしくは，スマートフォンのアプリにもMQTTクライアントが存在するので，
+使いやすそうなものを探してみるのもいいでしょう．</p>
 <pre class="hljs"><code>
     <span class="hljs-comment">#!/usr/bin/env python</span>
     <span class="hljs-comment"># -*- coding:utf-8 -*-</span>
@@ -543,7 +566,7 @@ ev3devの推奨環境がPython3なので，ここではpip3でpaho-mqttをイン
     <span class="hljs-keyword">import</span> paho.mqtt.client <span class="hljs-keyword">as</span> mqtt
 
     <span class="hljs-comment"># ブローカーの設定</span>
-    host = <span class="hljs-string">'127.0.0.1'</span>
+    host = <span class="hljs-string">'127.0.0.1'</span> <span class="hljs-comment"># ブローカーのIPアドレスに合わせて適宜変更する</span>
     port = <span class="hljs-number">1883</span>
 
     FORWARD_TOPIC = <span class="hljs-string">'ev3/forward'</span>
@@ -663,6 +686,7 @@ client.disconnect()
 <ul>
 <li>OpenCVを使う</li>
 </ul>
+<p>https://github.com/ardyadipta/ROS/tree/master/camera_image</p>
 
 </body>
 </html>

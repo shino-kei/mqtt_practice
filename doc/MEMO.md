@@ -8,6 +8,18 @@
 * テキストの編集:vi,nano,vim,emacs
 * ファイルのバージョン管理：git 
 
+```
+＜virtualboxでのIPアドレス扱いについて＞
+
+virtualBoxで作成したゲストOSは，ホストOSに直接NATされている設定になっているため，
+無線LANルータ等経由でゲストOSを見つけることができません．
+
+対策としては，virtualboxのゲストOSの設定で，
+ネットワークの割り当てをNATからブリッジアダプターに設定してください．
+
+参考リンク: http://www.ev3dev.org/docs/getting-started/
+```
+
 ## Pub/Sub型のデータ通信方法について理解する（MQTT）
 ### MQTTとは
 MQTTでのデータ通信はPublish/Subscriber型のメッセージングによって行われます．
