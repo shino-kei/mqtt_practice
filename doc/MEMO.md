@@ -85,8 +85,8 @@ on_backとon_forwardに対応する処理を加えて，後進と前進ができ
 
     mosquitto_pub -d -t ev3/back -m "20"
 
-とすれば，topic名:ev3/back，メッセージ:"20"でpublishしてくれます．
-もしくは，スマートフォンのアプリにもMQTTクライアントが存在するので，
+とすれば，topic名:`ev3/back`，メッセージ:`20`でpublishしてくれます．
+また，スマートフォンのアプリにもMQTTクライアントがあるようなので，
 使いやすそうなものを探してみるのもいいでしょう．
 
 
@@ -220,13 +220,19 @@ client.disconnect()
 EV3超音波センサーのデータを周期10HzでPublishせよ．
 
 
-### PCとEV3をMQTTで通信させよう
+### PCとからEV3にMQTTtopicを送信する
+これまでの章の課題が達成できていれば，ネットワーク経由のTopic通信によるラジコン操作ができるロボットの受信部分が完成したことになります．
 
+先程は，ホスト（PC）側からのPublishは，スマホのアプリもしくは`mosquitto_pub`を使用していたと思います．このままでは拡張性に欠けるので，次はホスト側のPublisherを作成してみることにします．本稿では，説明のため，このホストアプリを`ev3_driver`と呼称することにします．
+
+これまで作成したプログラムと，`ev3_driver`の接続関係は以下のようになります．
+
+![ev3_driver](./img/system_ev3_driver.png)
 
 ## ROSについて理解しよう
 
 ### Pub/Sub型のメッセージング
-http://wiki.ros.org/ja/indigo/Installation/Ubuntu
+http://wiki.ros.org/ja/ROS/Tutorials/WritingPublisherSubscriber(python)
 
 ### ROSのインストール
 http://wiki.ros.org/ja/indigo/Installation/Ubuntu
